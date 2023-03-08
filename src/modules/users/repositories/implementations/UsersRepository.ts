@@ -19,15 +19,31 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    // Complete aqui
+    const user = new User();
+    Object.assign(user, {
+      name,
+      email,
+      created_at: new Date(),
+    });
+    this.users.push(user);
+    return user;
   }
 
   findById(id: string): User | undefined {
-    // Complete aqui
+    const existsUser = this.users.find((user) => user.id === id);
+    if (existsUser) {
+      throw new Error("Mensagem do erro");
+    }
+    return existsUser;
   }
 
   findByEmail(email: string): User | undefined {
-    // Complete aqui
+    const existsUser = this.users.find((user) => user.email === email);
+    if (existsUser) {
+      throw new Error("Mensagem do erro");
+    }
+
+    return existsUser;
   }
 
   turnAdmin(receivedUser: User): User {
@@ -35,7 +51,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    // Complete aqui
+    return this.users;
   }
 }
 
