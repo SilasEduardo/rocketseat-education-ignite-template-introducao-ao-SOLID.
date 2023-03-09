@@ -13,6 +13,7 @@ class CreateUserUseCase {
     this.usersRepository.findByEmail(email);
     const user = this.usersRepository.create({ name, email });
 
+    console.log(user.id, user.admin);
     return user;
   }
 }

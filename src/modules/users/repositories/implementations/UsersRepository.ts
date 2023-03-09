@@ -22,8 +22,10 @@ class UsersRepository implements IUsersRepository {
     const user = new User();
     Object.assign(user, {
       name,
+      admin: false,
       email,
       created_at: new Date(),
+      updated_at: new Date(),
     });
     this.users.push(user);
     return user;
@@ -31,7 +33,8 @@ class UsersRepository implements IUsersRepository {
 
   findById(id: string): User | undefined {
     const existsUser = this.users.find((user) => user.id === id);
-    if (existsUser) {
+    console.log("exits user", existsUser);
+    if (!existsUser) {
       throw new Error("Mensagem do erro");
     }
     return existsUser;
@@ -47,7 +50,12 @@ class UsersRepository implements IUsersRepository {
   }
 
   turnAdmin(receivedUser: User): User {
-    // Complete aqui
+    Object.assign(receivedUser, {
+      admin: true,
+      updated_at: new Date(),
+    });
+
+    return receivedUser;
   }
 
   list(): User[] {
