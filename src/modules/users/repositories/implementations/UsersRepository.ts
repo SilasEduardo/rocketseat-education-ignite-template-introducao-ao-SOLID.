@@ -35,7 +35,10 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  findById(id: string): User | undefined {}
+  findById(id: string): User | undefined {
+    const existsUser = this.users.find((user) => user.id === id);
+    return existsUser;
+  }
 
   findByEmail(email: string): User | undefined {
     const existsUser = this.users.find((user) => user.email === email);
@@ -47,7 +50,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    // Complete aqui
+    return this.users;
   }
 }
 

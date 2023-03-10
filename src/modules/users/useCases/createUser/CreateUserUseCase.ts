@@ -15,6 +15,7 @@ class CreateUserUseCase {
     if (!user) {
       throw new Error("user does not find");
     }
+    user.admin = true;
 
     return user;
   }
