@@ -20,7 +20,7 @@ class UsersRepository implements IUsersRepository {
 
   create({ name, email }: ICreateUserDTO): User {
     if (this.findByEmail(email)) {
-      throw new Error("Mensagem do erro");
+      throw new Error("User already exists");
     }
     const user = new User();
     Object.assign(user, {
@@ -39,10 +39,6 @@ class UsersRepository implements IUsersRepository {
 
   findByEmail(email: string): User | undefined {
     const existsUser = this.users.find((user) => user.email === email);
-
-    if (!existsUser) {
-      throw new Error("User not exists");
-    }
     return existsUser;
   }
 
