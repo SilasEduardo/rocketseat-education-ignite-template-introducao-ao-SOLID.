@@ -15,7 +15,8 @@ class CreateUserUseCase {
     if (!user) {
       throw new Error("user does not find");
     }
-    user.admin = true;
+
+    console.log(user.id);
 
     return user;
   }

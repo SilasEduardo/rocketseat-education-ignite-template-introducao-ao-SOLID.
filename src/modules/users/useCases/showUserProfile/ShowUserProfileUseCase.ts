@@ -14,6 +14,7 @@ class ShowUserProfileUseCase {
     if (!user) {
       throw new Error("user not exists");
     }
+    console.log("user controleer", user);
     return user;
   }
 }
