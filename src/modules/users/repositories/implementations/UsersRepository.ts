@@ -45,7 +45,14 @@ class UsersRepository implements IUsersRepository {
     return existsUser;
   }
 
-  turnAdmin(receivedUser: User): User {}
+  turnAdmin(receivedUser: User): User {
+    Object.assign(receivedUser, {
+      admin: true,
+      updated_at: new Date(),
+    });
+
+    return receivedUser;
+  }
 
   list(): User[] {
     return this.users;
