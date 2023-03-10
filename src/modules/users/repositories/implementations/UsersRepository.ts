@@ -45,9 +45,7 @@ class UsersRepository implements IUsersRepository {
     return existsUser;
   }
 
-  turnAdmin(receivedUser: User): User {
-    // Complete aqui
-  }
+  turnAdmin(receivedUser: User): User {}
 
   list(): User[] {
     return this.users;
