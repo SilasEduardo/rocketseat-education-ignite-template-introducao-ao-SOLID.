@@ -2,22 +2,21 @@ import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
-  user_id: string | string[];
+  user_id: string;
 }
 
 class ListAllUsersUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: IRequest): User[] {
-    const users = this.usersRepository.list();
-    const user = users.find((user) => user.id === user_id);
+    const user = this.usersRepository.findById(user_id);
     if (!user) {
       throw new Error("user not exists");
     }
     if (!user.admin) {
       throw new Error("user not is admin");
     }
-    return users;
+    return this.usersRepository.list();
   }
 }
 
