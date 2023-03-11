@@ -34,11 +34,17 @@ class UsersRepository implements IUsersRepository {
   }
 
   findById(id: string): User | undefined {
+    if (!id) {
+      throw new Error("User not found");
+    }
     const exitsUser = this.users.find((user) => user.id === id);
     return exitsUser;
   }
 
   findByEmail(email: string): User | undefined {
+    if (!email) {
+      throw new Error("User not found");
+    }
     const exitsUser = this.users.find((user) => user.email === email);
     return exitsUser;
   }
