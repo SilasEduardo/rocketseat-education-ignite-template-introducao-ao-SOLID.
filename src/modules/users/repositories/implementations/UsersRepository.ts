@@ -19,9 +19,6 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    if (this.findByEmail(email)) {
-      throw new Error("User already exists");
-    }
     const user = new User();
     Object.assign(user, {
       name,
@@ -37,7 +34,6 @@ class UsersRepository implements IUsersRepository {
 
   findById(id: string): User | undefined {
     const existsUser = this.users.find((user) => user.id === id);
-    console.log("user find id", existsUser);
     return existsUser;
   }
 
