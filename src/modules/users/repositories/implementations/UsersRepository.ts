@@ -25,8 +25,8 @@ class UsersRepository implements IUsersRepository {
       name,
       admin: false,
       email,
-      created_at: Date,
-      updated_at: Date,
+      created_at: new Date(),
+      updated_at: new Date(),
     });
 
     this.users.push(user);
@@ -53,7 +53,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    return this.list();
+    return this.users;
   }
 }
 
